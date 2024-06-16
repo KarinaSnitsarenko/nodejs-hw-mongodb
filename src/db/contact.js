@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
 
-export const Contact = new Schema({
+const Contact = new Schema({
   name: {
     type: String,
     required: [true, 'Set name for contact'],

@@ -25,7 +25,7 @@ contactsRouter.patch(
 );
 
 contactsRouter.delete(
-  '/contacts/:studentId',
+  '/contacts/:contactId',
   ctrlWrapper(deleteContactController),
 );
 

@@ -1,9 +1,16 @@
 import { ContactsCollection } from '../db/contact.js';
 
-export const getAllContacts = async () => {
-  const contacts = await ContactsCollection.find();
+export const getAllContacts = async (skip, limit, sortBy, sortOrder) => {
+  const contacts = await ContactsCollection.find()
+    .sort({ [sortBy]: sortOrder })
+    .skip(skip)
+    .limit(limit);
 
   return contacts;
+};
+
+export const getContactsCount = async () => {
+  return await ContactsCollection.countDocuments();
 };
 
 export const getContactsById = async (contactId) => {

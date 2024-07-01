@@ -20,21 +20,25 @@ export const getContactsById = async (contactId) => {
 };
 
 export const createContact = async (payload) => {
-  const contact = await ContactsCollection.create(payload);
-
-  return contact;
+  try {
+    const contact = await ContactsCollection.create(payload);
+    return contact;
+  } catch (error) {
+    throw new Error(`Database Error: ${error.message}`);
+  }
 };
 
 export const updateContact = async (contactId, payload) => {
-  const result = await ContactsCollection.findOneAndUpdate(
-    { _id: contactId },
-    payload,
-    {
-      new: true,
-    },
-  );
-
-  return result;
+  try {
+    const result = await ContactsCollection.findByIdAndUpdate(
+      contactId,
+      payload,
+      { new: true },
+    );
+    return result;
+  } catch (error) {
+    throw new Error(`Database Error: ${error.message}`);
+  }
 };
 
 export const deleteContact = async (contactId) => {

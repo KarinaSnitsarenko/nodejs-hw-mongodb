@@ -12,6 +12,7 @@ import {
   patchContactController,
 } from '../controllers/contact.js';
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
+import { isValidId } from '../middlewares/isValidId.js';
 
 const contactsRouter = express.Router();
 
@@ -19,6 +20,7 @@ contactsRouter.get('/contacts', ctrlWrapper(getContactsController));
 
 contactsRouter.get(
   '/contacts/:contactId',
+  isValidId('contactId'),
   ctrlWrapper(getContactsByIdController),
 );
 
@@ -30,12 +32,14 @@ contactsRouter.post(
 
 contactsRouter.patch(
   '/contacts/:contactId',
+  isValidId('contactId'),
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
 
 contactsRouter.delete(
   '/contacts/:contactId',
+  isValidId('contactId'),
   ctrlWrapper(deleteContactController),
 );
 

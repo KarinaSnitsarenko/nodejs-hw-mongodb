@@ -15,6 +15,7 @@ const Contact = new Schema(
     email: {
       type: String,
       optional: true,
+      unique: true,
     },
 
     isFavourite: {
@@ -26,6 +27,7 @@ const Contact = new Schema(
       enum: ['work', 'personal', 'home'],
       default: 'personal',
     },
+    parentId: { type: Schema.Types.ObjectId, ref: 'users' },
   },
   {
     versionKey: false,

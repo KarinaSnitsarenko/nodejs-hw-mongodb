@@ -7,8 +7,7 @@ import { registerUser } from '../services/auth.js';
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);
 
-  res.json({
-    status: 201,
+  res.status(201).json({
     message: 'Successfully registered a user!',
     data: user,
   });
@@ -45,28 +44,6 @@ export const logoutUserController = async (req, res) => {
 
   res.status(204).send();
 };
-
-// export const logoutUserController = async (req, res) => {
-//   try {
-//     console.log('Cookies received:', req.cookies);
-
-//     if (req.cookies.sessionId) {
-//       await logoutUser(req.cookies.sessionId);
-//     }
-
-//     res.clearCookie('sessionId');
-//     res.clearCookie('refreshToken');
-
-//     res.status(204).send();
-//   } catch (error) {
-//     console.error('Logout error:', error);
-//     res.status(500).json({
-//       status: 500,
-//       message: 'Failed to logout',
-//       error: error.message,
-//     });
-//   }
-// };
 
 const setupSession = (res, session) => {
   res.cookie('refreshToken', session.refreshToken, {

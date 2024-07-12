@@ -1,6 +1,6 @@
 import cloudinary from 'cloudinary';
 import { ENV_VARS } from '../contacts/index.js';
-import { env } from './env';
+import { env } from '../utils/env.js';
 import fs from 'node:fs/promises';
 
 cloudinary.v2.config({

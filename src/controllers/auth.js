@@ -1,6 +1,4 @@
-// import createHttpError from 'http-errors';
-// import { ONE_DAY } from '../contacts/index.js';
-// import { UsersCollection } from '../db/user.js';
+
 import { ONE_DAY } from '../contacts/index.js';
 import {
   refreshUsersSession,
@@ -11,8 +9,6 @@ import { logoutUser } from '../services/auth.js';
 import { loginUser } from '../services/auth.js';
 import { registerUser } from '../services/auth.js';
 
-// import { env } from '../utils/env.js';
-// import { sendMail } from '../utils/sendMail.js';
 
 export const registerUserController = async (req, res) => {
   const user = await registerUser(req.body);

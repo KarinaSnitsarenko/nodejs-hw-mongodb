@@ -20,15 +20,10 @@ const contactsRouter = Router();
 
 contactsRouter.use(authenticate);
 
-contactsRouter.get(
-  '/',
-
-  ctrlWrapper(getContactsController),
-);
+contactsRouter.get('/', ctrlWrapper(getContactsController));
 
 contactsRouter.get(
   '/:contactId',
-
   isValidId('contactId'),
   ctrlWrapper(getContactsByIdController),
 );

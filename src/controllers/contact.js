@@ -60,26 +60,6 @@ export const getContactsByIdController = async (req, res, next) => {
   }
 };
 
-// export const createContactController = async (req, res, next) => {
-//   try {
-//     const { name, phoneNumber, ...rest } = req.body;
-//     const userId = req.user._id;
-
-//     if (!name || !phoneNumber) {
-//       return next(createHttpError(400, 'Name and Phone number are required'));
-//     }
-
-//     const contact = await createContact({ name, phoneNumber, ...rest, userId });
-
-//     res.status(201).json({
-//       message: 'Successfully created a contact!',
-//       data: contact,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 export const createContactController = async (req, res) => {
   const { file, body } = req;
 
@@ -94,28 +74,6 @@ export const createContactController = async (req, res) => {
     data: contact,
   });
 };
-
-// export const patchContactController = async (req, res, next) => {
-//   try {
-//     const { contactId } = req.params;
-//     const userId = req.user._id;
-//     const body = req.body;
-
-//     const result = await updateContact(contactId, userId, body);
-
-//     if (!result) {
-//       return next(createHttpError(404, 'Contact not found'));
-//     }
-
-//     res.json({
-//       status: 200,
-//       message: `Successfully updated contact with id ${contactId}!`,
-//       data: result,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 
 export const patchContactController = async (req, res) => {
   const { contactId } = req.params;

@@ -164,14 +164,14 @@ export const createContactController = async (req, res, next) => {
 export const patchContactController = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const { file, payload } = req;
+    const { file, body } = req;
     const userId = req.user._id;
 
     if (file) {
-      payload.photo = await saveFileToCloudinary(file);
+      body.photo = await saveFileToCloudinary(file);
     }
 
-    const result = await updateContact(contactId, userId, payload);
+    const result = await updateContact(contactId, userId, body);
 
     if (!result) {
       return next(createHttpError(404, 'Contact not found'));

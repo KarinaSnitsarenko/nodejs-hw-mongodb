@@ -8,7 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.js",
     "start": "node ./src/index.js",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build": "npm run build-docs",
+    "build-docs": "redocly bundle --ext json -o docs/swagger.json",
+    "preview-docs": "redocly preview-docs"
   },
   "keywords": [],
   "author": "",
@@ -35,7 +38,8 @@
     "nodemon": "^3.1.1",
     "path": "^0.12.7",
     "pino-http": "^10.1.0",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
@@ -44,5 +48,4 @@
     "globals": "^15.3.0",
     "pino-pretty": "^11.2.0"
   }
-
 }

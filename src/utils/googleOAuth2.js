@@ -3,7 +3,7 @@ import { OAuth2Client } from 'google-auth-library';
 import { readFile } from 'fs/promises';
 import { env } from './env.js';
 import createHttpError from 'http-errors';
-// import { GOOGLE } from '../contacts/index.js';
+import { GOOGLE } from '../contacts/index.js';
 
 export const validateCode = async (code) => {
   const response = await googleOAuthClient.getToken(code);
@@ -33,8 +33,8 @@ const googleAuthSettings = JSON.parse(await readFile(googleAuthSettingsPath));
 // const googleClientSecret = env(GOOGLE.GOOGLE_AUTH_CLIENT_SECRET);
 
 const googleOAuthClient = new OAuth2Client({
-  clientId: env('GOOGLE_AUTH_CLIENT_ID'),
-  clientSecret: env('GOOGLE_AUTH_CLIENT_SECRET'),
+  clientId: env(GOOGLE.GOOGLE_AUTH_CLIENT_ID),
+  clientSecret: env(GOOGLE.GOOGLE_AUTH_CLIENT_SECRET),
   redirectUri: googleAuthSettings.web.redirect_uris[0],
 });
 
@@ -46,3 +46,12 @@ export const generateAuthUrl = () => {
     ],
   });
 };
+
+// export const validateCode = async (code: string): Promise<LoginTicket> => {
+//   const response = await googleOAuthClient.getToken(code);
+//   if (!response.tokens.id_token) throw createHttpError(401, 'Unauthorized');
+//   const ticket = await googleOAuthClient.verifyIdToken({
+//     idToken: response.tokens.id_token,
+//   });
+//   return ticket;
+// };

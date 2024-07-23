@@ -5,16 +5,6 @@ import { env } from './env.js';
 import createHttpError from 'http-errors';
 import { GOOGLE } from '../contacts/index.js';
 
-export const validateCode = async (code) => {
-  const response = await googleOAuthClient.getToken(code);
-  if (!response.tokens.id_token) throw createHttpError(401, 'Unauthorized');
-
-  const ticket = await googleOAuthClient.verifyIdToken({
-    idToken: response.tokens.id_token,
-  });
-  return ticket;
-};
-
 export const getFullNameFromGoogleTokenPayload = (payload) => {
   let fullName = 'Guest';
   if (payload.given_name && payload.family_name) {
@@ -47,11 +37,12 @@ export const generateAuthUrl = () => {
   });
 };
 
-// export const validateCode = async (code: string): Promise<LoginTicket> => {
-//   const response = await googleOAuthClient.getToken(code);
-//   if (!response.tokens.id_token) throw createHttpError(401, 'Unauthorized');
-//   const ticket = await googleOAuthClient.verifyIdToken({
-//     idToken: response.tokens.id_token,
-//   });
-//   return ticket;
-// };
+export const validateCode = async (code) => {
+  const response = await googleOAuthClient.getToken(code);
+  if (!response.tokens.id_token) throw createHttpError(401, 'Unauthorized');
+
+  const ticket = await googleOAuthClient.verifyIdToken({
+    idToken: response.tokens.id_token,
+  });
+  return ticket;
+};

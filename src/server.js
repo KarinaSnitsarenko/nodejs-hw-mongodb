@@ -14,6 +14,8 @@ export const setupServer = () => {
 
   app.use(pino({ transport: { target: 'pino-pretty' } }));
 
+  app.use('/api-docs', swaggerDocs());
+
   app.use(cors());
 
   app.use(express.json());
@@ -27,9 +29,6 @@ export const setupServer = () => {
   app.use(errorHandler);
 
   app.use('/uploads', express.static(UPLOAD_DIR));
-
-   app.use('/uploads', express.static(UPLOAD_DIR));
-   app.use('/api-docs', swaggerDocs());
 
   const PORT = env(ENV_VARS.PORT, 3000);
 

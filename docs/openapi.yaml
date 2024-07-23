@@ -13,8 +13,7 @@ tags:
   - name: Contacts
     description: Operations with contacts (adding, editing, deleting, viewing)
 servers:
-  - url: <http://localhost:3000>
-  # - url: #посилання на задеплоєний сайт
+  - url: https://nodejs-hw-mongodb-7-mvg7.onrender.com
 paths:
   /contacts/{id}:
     get:
